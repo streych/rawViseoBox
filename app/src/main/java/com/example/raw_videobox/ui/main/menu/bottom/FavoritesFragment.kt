@@ -1,20 +1,21 @@
-package com.example.raw_videobox.ui.main
+package com.example.raw_videobox.ui.main.menu.bottom
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.raw_videobox.R
 import com.example.raw_videobox.databinding.MainFragmentBinding
+import com.example.raw_videobox.ui.main.MainViewModel
 
-class MainFragment : Fragment() {
+
+class FavoritesFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = FavoritesFragment()
     }
-
     private lateinit var viewModel: MainViewModel
     private var _binding: MainFragmentBinding? = null
     private val binding
@@ -24,6 +25,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Inflate the layout for this fragment
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,6 +34,7 @@ class MainFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
