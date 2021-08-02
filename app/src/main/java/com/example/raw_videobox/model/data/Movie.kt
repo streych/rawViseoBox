@@ -5,5 +5,6 @@ import android.media.Image
 data class Movie(
     val title: String,
     val description: String,
-    val dataCreate: String
+    val dataCreate: String,
+    val rating: Int
 )

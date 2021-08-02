@@ -5,12 +5,17 @@ import android.app.SearchManager
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.Menu
+import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 
 import com.example.raw_videobox.databinding.MainActivityBinding
 import com.example.raw_videobox.ui.main.menu.bottom.MainFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,4 +58,7 @@ class MainActivity : AppCompatActivity() {
         })
         return true
     }
+
+
+
 }

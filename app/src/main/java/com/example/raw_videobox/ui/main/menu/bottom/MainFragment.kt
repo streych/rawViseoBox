@@ -1,19 +1,16 @@
 package com.example.raw_videobox.ui.main.menu.bottom
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
+import androidx.constraintlayout.utils.widget.MockView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.example.raw_videobox.R
-import com.example.raw_videobox.databinding.FragmentFavoritesBinding
+import androidx.lifecycle.ViewModelProvider
 import com.example.raw_videobox.databinding.MainFragmentBinding
+import com.example.raw_videobox.model.Appstate
+import com.example.raw_videobox.model.data.Movie
 import com.example.raw_videobox.ui.main.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -43,6 +40,43 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        /*val observer = Observer<Any> {
+            val bnt = binding.button
+            bnt.setOnClickListener(View.OnClickListener {
+                renderData(it)
+            })
+        }
+        viewModel.getData().observe(viewLifecycleOwner, observer)*/
+        viewModel.getData().observe(viewLifecycleOwner, Observer { a -> renderData(a) })
+    }
+
+
+    private fun renderData(data: Appstate) {
+
+        // parentFragmentManager.beginTransaction().replace(binding.main.id, FavoritesFragment()).commit()
+
+        //Snackbar.make(requireActivity().findViewById(binding.main.id), "Data", Snackbar.LENGTH_LONG).show()
+
+        when (data) {
+            is Appstate.Success -> {
+                val movieData = data.movieData
+                binding.loadingLayout.visibility = View.GONE
+                populateData(movieData)
+            }
+            is Appstate.Loading -> {
+                binding.loadingLayout.visibility = View.VISIBLE
+            }
+            is Appstate.Error -> {
+                binding.loadingLayout.visibility = View.GONE
+                Snackbar.make(binding.main, "Error connect to database, please check your password", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun populateData(movieData: Movie){
+        with(binding){
+
+        }
     }
 
 }
