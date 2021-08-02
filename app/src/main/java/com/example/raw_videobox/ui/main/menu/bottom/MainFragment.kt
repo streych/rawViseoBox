@@ -40,27 +40,16 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        /*val observer = Observer<Any> {
-            val bnt = binding.button
-            bnt.setOnClickListener(View.OnClickListener {
-                renderData(it)
-            })
-        }
-        viewModel.getData().observe(viewLifecycleOwner, observer)*/
         viewModel.getData().observe(viewLifecycleOwner, Observer { a -> renderData(a) })
     }
 
 
     private fun renderData(data: Appstate) {
-
-        // parentFragmentManager.beginTransaction().replace(binding.main.id, FavoritesFragment()).commit()
-
-        //Snackbar.make(requireActivity().findViewById(binding.main.id), "Data", Snackbar.LENGTH_LONG).show()
-
         when (data) {
             is Appstate.Success -> {
                 val movieData = data.movieData
                 binding.loadingLayout.visibility = View.GONE
+
                 populateData(movieData)
             }
             is Appstate.Loading -> {

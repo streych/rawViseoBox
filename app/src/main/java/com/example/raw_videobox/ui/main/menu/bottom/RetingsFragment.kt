@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.raw_videobox.R
 
-class FavoritesFragment : Fragment() {
+class RetingsFragment : Fragment() {
 
     companion object {
-        fun newInstance() = FavoritesFragment()
+        fun newInstance() = RetingsFragment()
     }
 
-    private lateinit var viewModel: FavoritesViewModel
+    private lateinit var viewModel: RetingsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.favorites_fragment, container, false)
+        return inflater.inflate(R.layout.retings_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(RetingsViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
